@@ -13,12 +13,12 @@ async function registerParticipant(prevState, formData) {
     return { error: "Nama dan Email wajib diisi!", success: false };
   }
 
-  await new Promise((res) => setTimeout(res, 1500)); // simulasi delay
+  await new Promise((res) => setTimeout(res, 1500)); 
 
   return { success: true, participant: { name, email } };
 }
 
-// --- Button khusus agar bisa akses useFormStatus ---
+
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
@@ -38,7 +38,7 @@ export default function App() {
 
   const [isPending, startTransition] = useTransition();
 
-  // ---- Optimistic Update ----
+  
   const [optimisticParticipants, addOptimistic] = useOptimistic(
     participants,
     (state, newParticipant) => [...state, newParticipant]

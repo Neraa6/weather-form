@@ -7,20 +7,19 @@ import "./App.css";
 
 function App() {
   const [city, setCity] = useLocalStorage("lastCity", "Jakarta");
-  const [unit, toggleUnit] = useToggle(true); // true = Celsius
+  const [unit, toggleUnit] = useToggle(true); 
   const { width } = useWindowSize();
 
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // 🔹 fetch cuaca berdasarkan nama kota
+  
   const fetchWeather = async (cityName) => {
     try {
       setLoading(true);
       setError("");
 
-      // 1. Cari koordinat
       const geoRes = await fetch(
         `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=1`
       );
@@ -32,7 +31,7 @@ function App() {
 
       const { latitude, longitude, name, country } = geoData.results[0];
 
-      // 2. Ambil data cuaca
+      
       const weatherRes = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`
       );
@@ -52,7 +51,7 @@ function App() {
     }
   };
 
-  // 🔹 fetch pertama kali
+  
   useEffect(() => {
     fetchWeather(city);
   }, [city]);
@@ -63,7 +62,7 @@ function App() {
     if (inputCity) setCity(inputCity);
   };
 
-  // 🔹 konversi suhu °C → °F
+
   const convertTemp = (tempC) =>
     unit ? `${tempC}°C` : `${(tempC * 1.8 + 32).toFixed(1)}°F`;
 
@@ -72,7 +71,7 @@ function App() {
       <div className="weather-card p-4 rounded-4 shadow-lg text-white text-center">
         <h2 className="fw-bold mb-3">🌤 Weather Forecast</h2>
 
-        {/* 🔹 Form Search */}
+       
         <form className="d-flex mb-3" onSubmit={handleSearch}>
           <input
             type="text"
@@ -86,7 +85,7 @@ function App() {
         {loading && <p>⏳ Loading...</p>}
         {error && <p className="text-danger">❌ {error}</p>}
 
-        {/* 🔹 Data Cuaca */}
+     
         {weather && (
           <>
             <h3 className="mb-0">
@@ -104,7 +103,7 @@ function App() {
               Switch to {unit ? "°F" : "°C"}
             </button>
 
-            {/* 🔹 Forecast 7 Hari */}
+        
             <div className="forecast mt-4">
               <h5 className="mb-3">7-Day Forecast</h5>
               <div className="row g-2">
