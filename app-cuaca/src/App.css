@@ -1,0 +1,32 @@
+.app {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+}
+
+.weather-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.weather-card input {
+  border-radius: 10px;
+}
+
+.weather-card button {
+  border-radius: 10px;
+}
+
+.weather-card h2 {
+  font-size: 1.6rem;
+}
+
+.weather-card .display-4 {
+  font-size: 3rem;
+}
+
+.forecast .card {
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
